@@ -5,7 +5,16 @@ import java.util.Map;
 /** HU-02. PUNTO DE TRABAJO PARA LA PAREJA 2. */
 final class CancellationPolicy {
     boolean cancel(Map<String, String> ownerBySlot, String studentId, String slot) {
-        // TODO HU-02: solo el titular puede liberar una reserva existente.
-        return false;
+        String titular = ownerBySlot.get(slot);
+
+        if (titular == null) {
+            return false;
+        }
+        if (!titular.equals(studentId)) {
+            return false;
+        }
+
+        ownerBySlot.remove(slot);
+        return true;
     }
 }
