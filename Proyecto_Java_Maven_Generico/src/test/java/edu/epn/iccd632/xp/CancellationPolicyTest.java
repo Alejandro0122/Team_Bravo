@@ -1,21 +1,19 @@
 package edu.epn.iccd632.xp;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
 class CancellationPolicyTest {
 
     @Test
-    void titularCancelaSuReserva() {
-        Map<String, String> mapa = new HashMap<>();
-        mapa.put("A", "E01");
-        CancellationPolicy politica = new CancellationPolicy();
+    void ownerCancelsReservation() {
+        Map<String, String> map = new HashMap<>();
+        map.put("A", "E01");
 
-        boolean resultado = politica.cancel(mapa, "E01", "A");
-
-        Assertions.assertTrue(resultado);
-        Assertions.assertFalse(mapa.containsKey("A"));
+        assertTrue(new CancellationPolicy().cancel(map, "E01", "A"));
+        assertFalse(map.containsKey("A"));
     }
 }

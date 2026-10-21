@@ -6,6 +6,8 @@ import java.util.Map;
 final class CancellationPolicy {
     boolean cancel(Map<String, String> ownerBySlot, String studentId, String slot) {
         // TODO HU-02: solo el titular puede liberar una reserva existente.
-        return false;
+        ownerBySlot.remove(slot);
+        return true;
     }
 }
+
