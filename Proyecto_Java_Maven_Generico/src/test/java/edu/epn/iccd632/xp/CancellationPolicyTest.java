@@ -1,9 +1,21 @@
 package edu.epn.iccd632.xp;
 
-/**
- * HU-02: prueben primero CancellationPolicy directamente con un Map
- * precargado; así no dependen de que HU-01 ya esté terminada.
- */
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import java.util.HashMap;
+import java.util.Map;
+
 class CancellationPolicyTest {
-    // TODO HU-02: importar JUnit, preparar mapa con "A"->"E01" y probar.
+
+    @Test
+    void titularCancelaSuReserva() {
+        Map<String, String> mapa = new HashMap<>();
+        mapa.put("A", "E01");
+        CancellationPolicy politica = new CancellationPolicy();
+
+        boolean resultado = politica.cancel(mapa, "E01", "A");
+
+        Assertions.assertTrue(resultado);
+        Assertions.assertFalse(mapa.containsKey("A"));
+    }
 }
